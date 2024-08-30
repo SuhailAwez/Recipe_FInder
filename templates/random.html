@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Recipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='random.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Random Recipe</h1>
+        </header>
+
+        <div class="recipe-details">
+            {% if meal %}
+                <div class="recipe-card">
+                    <img src="{{ meal.strMealThumb }}" alt="{{ meal.strMeal }}">
+                    <h2>{{ meal.strMeal }}</h2>
+                    <p><strong>Category:</strong> {{ meal.strCategory }}</p>
+                    <p><strong>Area:</strong> {{ meal.strArea }}</p>
+                    <p><strong>Instructions:</strong> {{ meal.strInstructions }}</p>
+                    <a href="{{ meal.strSource }}" target="_blank">Recipe Source</a>
+                </div>
+            {% else %}
+                <p>No random recipe found or there was an error retrieving the recipe.</p>
+            {% endif %}
+        </div>
+
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

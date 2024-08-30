@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category: {{ category }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Meals in Category: {{ category }}</h1>
+        <div class="meals-list">
+            {% if meals %}
+                <ul>
+                    {% for meal in meals %}
+                        <li class="meal-item">
+                            <a href="{{ url_for('meal_details', meal_id=meal.idMeal) }}">
+                                <img src="{{ meal.strMealThumb }}" alt="{{ meal.strMeal }}" class="meal-image">
+                                <h2 class="meal-name">{{ meal.strMeal }}</h2>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No meals found in this category.</p>
+            {% endif %}
+        </div>
+        <a href="{{ url_for('categories') }}" class="back-link">Back to Categories</a>
+    </div>
+</body>
+</html>
